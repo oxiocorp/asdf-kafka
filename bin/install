@@ -15,7 +15,7 @@ untar_path() {
   local version=${2}
   local tmp_download_dir=${3}
 
-  echo "${tmp_download_dir}/kafka_2.12-${version}"
+  echo "${tmp_download_dir}/kafka_${version}"
 }
 
 download_source() {
@@ -31,7 +31,9 @@ get_download_url() {
   local install_type=${1}
   local version=${2}
 
-  echo "http://mirrors.gigenet.com/apache/kafka/${version}/kafka_2.12-${version}.tgz"
+  local kafka_version=$(echo "${version}" | cut -d'-' -f2)
+
+  echo "https://archive.apache.org/dist/kafka/${kafka_version}/kafka_${version}.tgz"
 }
 
 install_kafka() {
